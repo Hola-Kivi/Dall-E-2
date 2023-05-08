@@ -2,7 +2,14 @@
   "compilerOptions": {
     "sourceMap": true,
     "outDir": "dist",
-    "lib": ["esnext"],
+    "lib": ["esnext", "DOM"],
     "esModuleInterop": true
-  }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "pages/api/post.ts"
+  ]
 }

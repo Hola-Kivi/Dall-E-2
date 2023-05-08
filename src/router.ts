@@ -3,10 +3,11 @@ import { Router } from 'express';
 import { genImage } from './controller/genController';
 
 const router = Router();
+
 /**
  * image
  */
-router.post('/image', genImage);
+router.route('/image').post(genImage);
 
 /**
  * editImage
