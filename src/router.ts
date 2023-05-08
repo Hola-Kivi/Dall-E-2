@@ -1,33 +1,20 @@
 import { Router } from 'express';
 
+import { genImage } from './controller/genController';
+
 const router = Router();
 /**
- * Product
+ * image
  */
-router.get('/product', (req, res) => {
-  res.json({ message: 'product' });
-});
-router.get('/product/:id', (req, res) => {});
-router.post('/product', (req, res) => {});
-router.put('/product/:id', (req, res) => {});
-router.delete('/product/:id', (req, res) => {});
+router.post('/image', genImage);
 
 /**
- * Update
+ * editImage
  */
-router.get('/update', (req, res) => {});
-router.get('/update/:id', (req, res) => {});
-router.post('/update', (req, res) => {});
-router.put('/update/:id', (req, res) => {});
-router.delete('/update/:id', (req, res) => {});
-
-/**
- * UpdatePoint
- */
-router.get('/updatepoint', (req, res) => {});
-router.get('/updatepoint/:id', (req, res) => {});
-router.post('/updatepoint', (req, res) => {});
-router.put('/updatepoint/:id', (req, res) => {});
-router.delete('/updatepoint/:id', (req, res) => {});
+router.get('/editimage', (req, res) => {});
+router.get('/editimage/:id', (req, res) => {});
+router.post('/editimage', (req, res) => {});
+router.put('/editimage/:id', (req, res) => {});
+router.delete('/editimage/:id', (req, res) => {});
 
 export default router;
