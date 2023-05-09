@@ -1,13 +1,13 @@
-import { Router } from 'express';
+import { Router } from "express";
 
-import { genImage } from './controller/genController';
+import { genImage } from "./controller/genController";
 
 const router = Router();
 
 /**
  * image
  */
-router.route('/image').post(genImage);
+router.route("/image").post(genImage);
 
 /**
  * editImage
