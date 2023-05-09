@@ -9,7 +9,12 @@ interface apiParams {
   json?: boolean;
 }
 
-const fetcher = async ({ url, method, body, json = true }: apiParams) => {
+export const fetcher = async ({
+  url,
+  method,
+  body,
+  json = true,
+}: apiParams) => {
   const res = await fetch(url, {
     method,
     ...(body && { body: JSON.stringify(body) }),
@@ -27,5 +32,3 @@ const fetcher = async ({ url, method, body, json = true }: apiParams) => {
     return data.data;
   }
 };
-
-export default fetcher;

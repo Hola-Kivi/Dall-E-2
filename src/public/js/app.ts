@@ -1,9 +1,28 @@
-import { fetcher } from '../../utils/fetcher';
+const fetcher = async ({ url, method, body, json = true }) => {
+  const res = await fetch(url, {
+    method,
+    ...(body && { body: JSON.stringify(body) }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
-const image = document.querySelector('#image') as HTMLInputElement;
-const msg = document.querySelector('.msg') as HTMLInputElement;
-const prompt = document.querySelector('#prompt') as HTMLInputElement;
-const size = document.querySelector('#size') as HTMLInputElement;
+  if (!res.ok) {
+    removeSpinner();
+    throw new Error('That image could not be generated');
+  }
+
+  if (json) {
+    const data = await res.json();
+
+    return data.data;
+  }
+};
+
+const image = document.querySelector('#image') as HTMLImageElement;
+const msg = document.querySelector('.msg') as HTMLElement;
+const promptInput = document.querySelector('#prompt') as HTMLInputElement;
+const sizeInput = document.querySelector('#size') as HTMLInputElement;
 
 const onSubmit = (e: SubmitEvent) => {
   e.preventDefault();
@@ -11,8 +30,8 @@ const onSubmit = (e: SubmitEvent) => {
   msg.textContent = '';
   image.src = '';
 
-  const promptValue = prompt.value;
-  const sizeValue = size.value;
+  const promptValue = promptInput.value;
+  const sizeValue = sizeInput.value;
 
   if (promptValue === '') {
     alert('Please add some text');
@@ -34,7 +53,7 @@ const generateImageRequest = async (prompt: string, size: string) => {
     // console.log(data);
 
     const imageUrl = data;
-    image.src = imageUrl;
+    // image.src = imageUrl;
 
     removeSpinner();
   } catch (error) {

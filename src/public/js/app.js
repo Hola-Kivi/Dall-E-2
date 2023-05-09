@@ -8,8 +8,10 @@ const fetcher = async ({ url, method, body, json = true }) => {
   });
 
   if (!res.ok) {
+    removeSpinner();
     throw new Error('That image could not be generated');
   }
+
   if (json) {
     const data = await res.json();
 
@@ -19,8 +21,8 @@ const fetcher = async ({ url, method, body, json = true }) => {
 
 const image = document.querySelector('#image');
 const msg = document.querySelector('.msg');
-const prompt = document.querySelector('#prompt');
-const size = document.querySelector('#size');
+const promptInput = document.querySelector('#prompt');
+const sizeInput = document.querySelector('#size');
 
 const onSubmit = (e) => {
   e.preventDefault();
@@ -28,8 +30,8 @@ const onSubmit = (e) => {
   msg.textContent = '';
   image.src = '';
 
-  const promptValue = prompt.value;
-  const sizeValue = size.value;
+  const promptValue = promptInput.value;
+  const sizeValue = sizeInput.value;
 
   if (promptValue === '') {
     alert('Please add some text');
@@ -44,14 +46,14 @@ const generateImageRequest = async (prompt, size) => {
     showSpinner();
 
     const data = await fetcher({
-      url: 'http://localhost:3001/api/image',
+      url: '/api/image',
       method: 'POST',
       body: { prompt, size },
     });
     // console.log(data);
 
     const imageUrl = data;
-    image.src = imageUrl;
+    // image.src = imageUrl;
 
     removeSpinner();
   } catch (error) {

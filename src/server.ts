@@ -1,8 +1,9 @@
 import express from 'express';
-import router from './router';
 import morgan from 'morgan';
 import cors from 'cors';
 import path from 'path';
+
+import router from './router';
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 //   res.json({ message: 'hello' });
 // });
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', router);
 
 export default app;

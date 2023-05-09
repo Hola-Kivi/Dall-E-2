@@ -30,5 +30,10 @@ export const genImage = async (req: Request, res: Response) => {
     } else {
       console.log(error.message);
     }
+
+    res.status(400).json({
+      success: false,
+      error: 'The image could not be generated',
+    });
   }
 };
