@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 
-import { Configuration, OpenAIApi } from 'openai';
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+// import { Configuration, OpenAIApi } from 'openai';
+// const configuration = new Configuration({
+//   apiKey: process.env.OPENAI_API_KEY,
+// });
+// const openai = new OpenAIApi(configuration);
 
 export const genImage = async (req: Request, res: Response) => {
   const { prompt, size } = req.body;
@@ -22,8 +22,9 @@ export const genImage = async (req: Request, res: Response) => {
     // res.status(200).json({ photo: image });
     res.status(200).json({
       success: true,
+      data: { prompt, imageSize },
     });
-  } catch (error) {
+  } catch (error: any) {
     if (error.response) {
       console.log(error.response.status);
       console.log(error.response.data);
