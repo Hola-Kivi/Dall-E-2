@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 
 // import { Configuration, OpenAIApi } from 'openai';
 // const configuration = new Configuration({
@@ -9,7 +9,7 @@ import { Request, Response } from 'express';
 export const genImage = async (req: Request, res: Response) => {
   const { prompt, size } = req.body;
   const imageSize =
-    size === 'small' ? '256x256' : size === 'medium' ? '512x512' : '1024x1024';
+    size === "small" ? "256x256" : size === "medium" ? "512x512" : "1024x1024";
   try {
     // const response = await openai.createImage({
     //   prompt,
@@ -34,7 +34,7 @@ export const genImage = async (req: Request, res: Response) => {
 
     res.status(400).json({
       success: false,
-      error: 'The image could not be generated',
+      error: "The image could not be generated",
     });
   }
 };
