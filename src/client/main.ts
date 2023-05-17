@@ -36,14 +36,13 @@ const generateImageRequest = async (prompt: string, size: string) => {
       method: "POST",
       body: { prompt, size },
     });
-    // console.log(data);
 
-    const imageUrl = data;
-    // image.src = imageUrl;
+    image.src = data;
 
     removeSpinner();
   } catch (error: any) {
     msg.textContent = error;
+    removeSpinner();
   }
 };
 function showSpinner() {

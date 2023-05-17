@@ -6,5 +6,5 @@ import config from "./config";
 import app from "./server";
 
 ViteExpress.listen(app, config.port, () =>
-  console.log("Server is listening on port 3000...")
+  console.log(`Server is listening on port ${config.port}...`)
 );
